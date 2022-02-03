@@ -44,6 +44,9 @@ def consume(args, req, res):
 
 
 def run(args):
+    from PIL import Image, features
+    print(features.check('raqm'))
+
     req = Queue(maxsize=1024)
     res = Queue(maxsize=1024)
 
@@ -80,9 +83,9 @@ def run(args):
 
 def parse_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--template", type=str, required=True)
-    parser.add_argument("--config", type=str, required=True)
-    parser.add_argument("--output", type=str, required=True)
+    parser.add_argument("--template", type=str, default="templates/default.py")
+    parser.add_argument("--config", type=str, default="templates/default_horizontal.yaml")
+    parser.add_argument("--output", type=str, default="results")
     parser.add_argument("--count", type=int, default=100)
     parser.add_argument("--worker", type=int, default=1)
     args = parser.parse_args()
